@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64253529235B51BF005571F7 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64253528235B51BF005571F7 /* NextViewController.swift */; };
 		646EE7DD23404FBE0063612A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646EE7DC23404FBE0063612A /* AppDelegate.swift */; };
 		646EE7DF23404FBE0063612A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646EE7DE23404FBE0063612A /* ViewController.swift */; };
 		646EE7E223404FBE0063612A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 646EE7E023404FBE0063612A /* Main.storyboard */; };
 		646EE7E423404FC00063612A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646EE7E323404FC00063612A /* Assets.xcassets */; };
 		646EE7E723404FC00063612A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 646EE7E523404FC00063612A /* LaunchScreen.storyboard */; };
+		646EE7EF234052FE0063612A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646EE7EE234052FE0063612A /* GameScene.swift */; };
+		646EE7F323424C960063612A /* 線香花火_3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 646EE7F223424C960063612A /* 線香花火_3.mp3 */; };
+		646EE7F523424C9F0063612A /* 線香花火_2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 646EE7F423424C9F0063612A /* 線香花火_2.mp3 */; };
+		646EE7F723424CA90063612A /* 線香花火.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 646EE7F623424CA90063612A /* 線香花火.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		64253528235B51BF005571F7 /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
 		646EE7D923404FBE0063612A /* Senkouhanabi2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Senkouhanabi2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		646EE7DC23404FBE0063612A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		646EE7DE23404FBE0063612A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +28,10 @@
 		646EE7E323404FC00063612A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		646EE7E623404FC00063612A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		646EE7E823404FC00063612A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		646EE7EE234052FE0063612A /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		646EE7F223424C960063612A /* 線香花火_3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "線香花火_3.mp3"; sourceTree = "<group>"; };
+		646EE7F423424C9F0063612A /* 線香花火_2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "線香花火_2.mp3"; sourceTree = "<group>"; };
+		646EE7F623424CA90063612A /* 線香花火.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "線香花火.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +66,15 @@
 			children = (
 				646EE7DC23404FBE0063612A /* AppDelegate.swift */,
 				646EE7DE23404FBE0063612A /* ViewController.swift */,
+				64253528235B51BF005571F7 /* NextViewController.swift */,
+				646EE7EE234052FE0063612A /* GameScene.swift */,
 				646EE7E023404FBE0063612A /* Main.storyboard */,
 				646EE7E323404FC00063612A /* Assets.xcassets */,
 				646EE7E523404FC00063612A /* LaunchScreen.storyboard */,
 				646EE7E823404FC00063612A /* Info.plist */,
+				646EE7F623424CA90063612A /* 線香花火.mp3 */,
+				646EE7F223424C960063612A /* 線香花火_3.mp3 */,
+				646EE7F423424C9F0063612A /* 線香花火_2.mp3 */,
 			);
 			path = Senkouhanabi2;
 			sourceTree = "<group>";
@@ -123,8 +138,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				646EE7E723404FC00063612A /* LaunchScreen.storyboard in Resources */,
+				646EE7F323424C960063612A /* 線香花火_3.mp3 in Resources */,
 				646EE7E423404FC00063612A /* Assets.xcassets in Resources */,
+				646EE7F723424CA90063612A /* 線香花火.mp3 in Resources */,
 				646EE7E223404FBE0063612A /* Main.storyboard in Resources */,
+				646EE7F523424C9F0063612A /* 線香花火_2.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +153,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				646EE7EF234052FE0063612A /* GameScene.swift in Sources */,
+				64253529235B51BF005571F7 /* NextViewController.swift in Sources */,
 				646EE7DF23404FBE0063612A /* ViewController.swift in Sources */,
 				646EE7DD23404FBE0063612A /* AppDelegate.swift in Sources */,
 			);
@@ -292,7 +312,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.techacademy.tomokazu.takahashi.Senkouhanabi2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -310,7 +330,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.techacademy.tomokazu.takahashi.Senkouhanabi2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

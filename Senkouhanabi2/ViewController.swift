@@ -8,13 +8,19 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
 
+    @IBOutlet weak var button: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
+        
+        button.backgroundColor = UIColor.green // 背景色
+        
+        button.layer.cornerRadius = 10.0 // 角丸のサイズ
+        }
 
-
+    
 }
 

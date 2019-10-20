@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +13,112 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Senkouhanabi2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PgG-ah-KlU">
+                                <rect key="frame" x="128" y="763" width="158" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Mu1-5e-f6m"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="tintColor" red="0.12627962370000001" green="0.050738698380000002" blue="0.38882059009999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="始める"/>
+                                <connections>
+                                    <segue destination="Xqq-xD-eE4" kind="show" id="XOt-xK-D3n"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hiP-op-6SV">
+                                <rect key="frame" x="49" y="114" width="316" height="34"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="線香花火アプリ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="34" name="HiraginoSans-W6"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="線香花火イラスト" translatesAutoresizingMaskIntoConstraints="NO" id="y9l-Dz-1KD">
+                                <rect key="frame" x="87" y="148" width="240" height="600"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.12627962372065682" green="0.050738698379988498" blue="0.38882059010152281" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PgG-ah-KlU" secondAttribute="trailing" constant="128" id="H3Z-dw-2XP"/>
+                            <constraint firstItem="hiP-op-6SV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="49" id="JdJ-ev-4Jd"/>
+                            <constraint firstItem="PgG-ah-KlU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="128" id="OcD-U6-GWb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="y9l-Dz-1KD" secondAttribute="trailing" constant="87" id="Yd2-JH-dFw"/>
+                            <constraint firstItem="y9l-Dz-1KD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Z3W-ZN-Zj4"/>
+                            <constraint firstItem="y9l-Dz-1KD" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Zy4-y2-skz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PgG-ah-KlU" secondAttribute="bottom" constant="39" id="edC-lI-dxz"/>
+                            <constraint firstItem="hiP-op-6SV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="kYV-Ad-ORp"/>
+                            <constraint firstItem="y9l-Dz-1KD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="lCO-kp-0Sm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hiP-op-6SV" secondAttribute="trailing" constant="49" id="rf2-Ol-fzG"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="Button" destination="PgG-ah-KlU" id="Wp1-Ju-ITd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="107.8125"/>
+        </scene>
+        <!--Next View Controller-->
+        <scene sceneID="vOn-XC-bTl">
+            <objects>
+                <viewController id="Xqq-xD-eE4" customClass="NextViewController" customModule="Senkouhanabi2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LO9-fM-e1w" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYb-aE-nrv">
+                                <rect key="frame" x="20" y="713" width="374" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="tPJ-RS-Z2p"/>
+                                </constraints>
+                                <state key="normal" title="戻る" image="button-1157299_960_720">
+                                    <color key="titleColor" red="0.12627962370000001" green="0.050738698380000002" blue="0.38882059009999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="returnButton:" destination="Xqq-xD-eE4" eventType="touchUpInside" id="sXm-nL-FNb"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="戻る" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2I-pL-WYQ">
+                                <rect key="frame" x="150" y="736" width="114" height="28"/>
+                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="28"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="m2I-pL-WYQ" firstAttribute="centerX" secondItem="LO9-fM-e1w" secondAttribute="centerX" id="0sv-pn-ZNt"/>
+                            <constraint firstItem="dpv-nV-U2M" firstAttribute="trailing" secondItem="m2I-pL-WYQ" secondAttribute="trailing" constant="150" id="8pp-na-x9h"/>
+                            <constraint firstItem="dpv-nV-U2M" firstAttribute="bottom" secondItem="m2I-pL-WYQ" secondAttribute="bottom" constant="49" id="BUR-tn-om3"/>
+                            <constraint firstItem="HYb-aE-nrv" firstAttribute="leading" secondItem="dpv-nV-U2M" secondAttribute="leading" constant="20" id="Lfe-E5-6u8"/>
+                            <constraint firstItem="dpv-nV-U2M" firstAttribute="bottom" secondItem="HYb-aE-nrv" secondAttribute="bottom" constant="20" id="TjO-qU-Rab"/>
+                            <constraint firstItem="m2I-pL-WYQ" firstAttribute="leading" secondItem="dpv-nV-U2M" secondAttribute="leading" constant="150" id="pfA-At-Mb8"/>
+                            <constraint firstItem="dpv-nV-U2M" firstAttribute="trailing" secondItem="HYb-aE-nrv" secondAttribute="trailing" constant="20" id="x3u-QY-kTg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dpv-nV-U2M"/>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qMo-wI-3Xf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="908.69565217391312" y="107.8125"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="button-1157299_960_720" width="960" height="480"/>
+        <image name="線香花火イラスト" width="600" height="600"/>
+    </resources>
 </document>
