@@ -19,6 +19,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     var opening:SKNode!
     var stickNode:SKNode!
     
+    //音1のインスタンス
+    let sound = SKNode()
     //音２のインスタンス
     let sound2 = SKNode()
     
@@ -35,9 +37,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     var acceleZ: Double = 0
     let Alpha = 0.4
     var flg: Bool = false
-
-    //変数sparklerSoundを宣言
-    var sparklerSound: SKAudioNode!
     
 // SKView上にシーンが表示されたときに呼ばれるメソッド
     override func didMove(to view: SKView) {
@@ -70,45 +69,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         chirachira.zPosition = 1
         opening.zPosition = 1
         
-        //加速度センサー
-        if motionManager.isAccelerometerAvailable {
-            // センサーの更新間隔（interval）の設定 [sec]
-            motionManager.accelerometerUpdateInterval = 0.2
-            
-            // センサー値の取得開始
-            motionManager.startAccelerometerUpdates(
-                to: OperationQueue.current!,
-                withHandler: {(accelData: CMAccelerometerData?, errorOC: Error?) in
-                    self.lowpassFilter(acceleration: accelData!.acceleration)
-            })
-            print("センサーが作動しました")
-        }
-
+        
     }
     
 //音
     func setupSound(){
-        //"線香花火.mp3"をsoundとする
-        let sound = SKAudioNode(fileNamed: "線香花火.mp3")
-        //サウンドをループさせる
-        sound.autoplayLooped = true
-        //フェードアウトまで39秒
-        let waitSound = SKAction.wait(forDuration: 39.0)
-        //5秒間でフェードアウトする
-        let fadeOutSound = SKAction.fadeOut(withDuration: 5.0)
+        //soundデータを読み込む
+        let s1 = SKAction.playSoundFileNamed("fuse1.mp3", waitForCompletion: false)
+        let s2 = SKAction.playSoundFileNamed("線香花火.mp3", waitForCompletion: true)
+        //s2をループ
+        let actionLoop = SKAction.repeatForever(s2)
+        //待ち39秒
+        let wait = SKAction.wait(forDuration: 39.0)
         // サウンドを削除
         let deleteSound = SKAction.removeFromParent()
-        //55秒間待機→5秒フェードアウト→サウンド削除
-        let setSound = SKAction.sequence([waitSound,fadeOutSound,deleteSound])
+        //s1再生→39秒間待機→サウンド削除
+        let setSound = SKAction.sequence([s1,actionLoop])
         sound.run(setSound)
+        let cancelSound = SKAction.sequence([wait,deleteSound])
+        sound.run(cancelSound)
         //サウンドを追加する
         addChild(sound)
-        sparklerSound = sound
+      
     }
     
 //音2
     func setupSound2(){
-        //"線香花火_3.mp3"をsound2とする
+        //soundデータを読み込む
         let s1 = SKAction.playSoundFileNamed("線香花火_3.mp3", waitForCompletion: false)
         let s2 = SKAction.playSoundFileNamed("線香花火_2.mp3", waitForCompletion: true)
         
@@ -281,10 +268,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
 
         // OPを削除
         let delete = SKAction.removeFromParent()
+        
+        let startMotionSensor = SKAction.run {
+            //加速度センサー
+            if self.motionManager.isAccelerometerAvailable {
+                // センサーの更新間隔（interval）の設定 [sec]
+                self.motionManager.accelerometerUpdateInterval = 0.2
+                
+                // センサー値の取得開始
+                self.motionManager.startAccelerometerUpdates(
+                    to: OperationQueue.current!,
+                    withHandler: {(accelData: CMAccelerometerData?, errorOC: Error?) in
+                        self.lowpassFilter(acceleration: accelData!.acceleration)
+                })
+                print("センサーが作動しました")
+            }
+        }
+        
         //アニメーション
         let OPAnimation = SKAction.repeatForever(SKAction.sequence([
             op1,op2,op3,op4,op5,op6,op7,op8,op9,op10,op11,op12,op13,op14,op15,op16,op17,
-            op18,op19,op20,op21,op22,op23,op22,op24,op22,op23,op22,op24,delete
+            op18,op19,op20,op21,op22,op23,op22,op24,op22,op23,op22,op24,delete,startMotionSensor
             ]))
         
         // スプライトを作成(配置)
@@ -416,11 +420,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let pp15 = SKAction.animate(with: [PatiPatiTexture15], timePerFrame: 0.1) //パチパチ15（0.1秒）
         let pp16 = SKAction.animate(with: [PatiPatiTexture16], timePerFrame: 0.1) //パチパチ16（0.1秒）
         
-        //2秒かけてフェードアウトする
-        let fadeOut = SKAction.fadeOut(withDuration: 1.0)
+        // パチパチを削除
+        let delete = SKAction.removeFromParent()
         
         // 待ち→パチパチ→待ち→パチパチ→待ち...
-        let PPAnimation = SKAction.repeatForever(SKAction.sequence([wait,m,pp1,m,pp4,m2,pp3,pp4,m2,pp5,pp6,m2,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp12,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp4,pp11,pp3,pp1,pp7,pp8,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,m3,pp13,pp15,pp16,m3,pp14,pp16,m3,pp13,pp14,m3,pp13,pp13,pp15,pp16,m3,pp14,pp16,m3,pp13,pp14,m3,pp13,pp13,pp15,pp16,m3,pp14,pp16,m3,pp13,pp14,m3,pp13,pp13,pp15,pp16,m3,pp14,pp16,m3,pp13,pp14,m3,pp13,pp13,fadeOut
+        let PPAnimation = SKAction.repeatForever(SKAction.sequence([wait,m,pp1,m,pp4,m2,pp3,pp4,m2,pp5,pp6,m2,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp12,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp4,pp11,pp3,pp1,pp7,pp8,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,m3,pp13,pp15,pp16,m3,pp14,pp16,m3,pp13,pp14,m3,pp13,pp13,pp15,pp16,m3,pp14,pp16,m3,pp13,pp14,m3,pp13,pp13,pp15,pp16,m3,pp14,pp16,m3,pp13,pp14,m3,pp13,pp13,pp15,pp16,m3,pp14,pp16,m3,pp13,pp14,m3,pp13,pp13,delete
             ]))
 
         // スプライトを作成(配置)
@@ -465,9 +469,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
 
         //2秒かけてフェードアウトする
         let fadeOut = SKAction.fadeOut(withDuration: 1.0)
+        // パチパチ２を削除
+        let delete = SKAction.removeFromParent()
 
         // 待ち→パチパチ→待ち→パチパチ→待ち...
-        let PPAnimation = SKAction.repeatForever(SKAction.sequence([wait,m,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,fadeOut]))
+        let PPAnimation = SKAction.repeatForever(SKAction.sequence([wait,m,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,fadeOut,delete]))
 
         pati2 = SKSpriteNode(texture: PatiPatiTexture1)
         pati2.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.4)
@@ -504,8 +510,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         // 待ち時間3.5秒
         let wait = SKAction.animate(with: [Texture], timePerFrame: 3.5)
-        // 待ち時間20秒
-        let m = SKAction.animate(with: [Texture], timePerFrame: 35.0)
+        // 待ち時間34.5秒
+        let m = SKAction.animate(with: [Texture], timePerFrame: 34.5)
+        // チラチラを削除
+        let delete = SKAction.removeFromParent()
         
         //チラチラを表示
         let pp1 = SKAction.animate(with: [ChiraChira1], timePerFrame: 0.1) //チラチラ1（0.1秒）
@@ -517,11 +525,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let pp7 = SKAction.animate(with: [ChiraChira7], timePerFrame: 0.2) //チラチラ7（0.1秒）
         let pp8 = SKAction.animate(with: [ChiraChira8], timePerFrame: 0.2) //チラチラ8（0.1秒）
         
-        //2秒かけてフェードアウトする
-        let fadeOut = SKAction.fadeOut(withDuration: 2.0)
-        
-        // 待ち→パチパチ→待ち→パチパチ→待ち...
-        let PPAnimation = SKAction.repeatForever(SKAction.sequence([wait,m,pp1,pp3,pp4,pp1,pp2,pp5,pp1,pp6,pp4,pp1,pp2,pp7,pp1,pp4,pp8,pp1,pp2,pp3,pp1,fadeOut]))
+        // 待ち→チラチラ→待ち→チラチラ→待ち...
+        let PPAnimation = SKAction.repeatForever(SKAction.sequence([wait,m,pp1,pp3,pp4,pp1,pp2,pp5,pp1,pp6,pp4,pp1,pp2,pp7,pp1,pp4,pp8,pp1,pp2,pp3,pp1,delete]))
         
         chirachira = SKSpriteNode(texture: ChiraChira1)
         chirachira.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.45)
@@ -539,8 +544,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         // 見えざる地面のノード
         let GroundNode = SKNode()
         
-        //プライトの表示する位置を指定する
-        GroundNode.position = CGPoint(x: self.frame.size.width * 0.5,y: self.frame.size.height * 0.2)
+        //スプライトの表示する位置を指定する
+        GroundNode.position = CGPoint(x: self.frame.size.width * 0.5,y: self.frame.size.height * 0.3)
         
         // スプライトに物理演算を設定する
         GroundNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.frame.size.width, height: self.frame.size.height/3))
@@ -561,12 +566,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         if (contact.bodyA.categoryBitMask & groundCategory) == groundCategory || (contact.bodyB.categoryBitMask & groundCategory) == groundCategory {
             
             // サウンドを削除する
+            let deleteSound = SKAction.removeFromParent()
+            sound.run(deleteSound)
             let deleteSound2 = SKAction.removeFromParent()
-            sparklerSound.run(deleteSound2)
-            
-            // サウンド2を削除する
-            let deleteSound3 = SKAction.removeFromParent()
-            sound2.run(deleteSound3)
+            sound2.run(deleteSound2) 
             print("サウンド削除")
             
             // パチパチを削除する
