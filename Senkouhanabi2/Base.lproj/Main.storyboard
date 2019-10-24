@@ -80,37 +80,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYb-aE-nrv">
-                                <rect key="frame" x="20" y="713" width="374" height="80"/>
+                                <rect key="frame" x="20" y="753" width="374" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="tPJ-RS-Z2p"/>
+                                    <constraint firstAttribute="height" constant="40" id="tPJ-RS-Z2p"/>
                                 </constraints>
-                                <state key="normal" title="戻る" image="button-1157299_960_720">
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="戻る">
                                     <color key="titleColor" red="0.12627962370000001" green="0.050738698380000002" blue="0.38882059009999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
                                     <action selector="returnButton:" destination="Xqq-xD-eE4" eventType="touchUpInside" id="sXm-nL-FNb"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="戻る" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m2I-pL-WYQ">
-                                <rect key="frame" x="150" y="736" width="114" height="28"/>
-                                <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="28"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="m2I-pL-WYQ" firstAttribute="centerX" secondItem="LO9-fM-e1w" secondAttribute="centerX" id="0sv-pn-ZNt"/>
-                            <constraint firstItem="dpv-nV-U2M" firstAttribute="trailing" secondItem="m2I-pL-WYQ" secondAttribute="trailing" constant="150" id="8pp-na-x9h"/>
-                            <constraint firstItem="dpv-nV-U2M" firstAttribute="bottom" secondItem="m2I-pL-WYQ" secondAttribute="bottom" constant="49" id="BUR-tn-om3"/>
                             <constraint firstItem="HYb-aE-nrv" firstAttribute="leading" secondItem="dpv-nV-U2M" secondAttribute="leading" constant="20" id="Lfe-E5-6u8"/>
                             <constraint firstItem="dpv-nV-U2M" firstAttribute="bottom" secondItem="HYb-aE-nrv" secondAttribute="bottom" constant="20" id="TjO-qU-Rab"/>
-                            <constraint firstItem="m2I-pL-WYQ" firstAttribute="leading" secondItem="dpv-nV-U2M" secondAttribute="leading" constant="150" id="pfA-At-Mb8"/>
                             <constraint firstItem="dpv-nV-U2M" firstAttribute="trailing" secondItem="HYb-aE-nrv" secondAttribute="trailing" constant="20" id="x3u-QY-kTg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dpv-nV-U2M"/>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="returnButton" destination="HYb-aE-nrv" id="8DN-an-1Tm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qMo-wI-3Xf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -118,7 +113,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="button-1157299_960_720" width="960" height="480"/>
         <image name="線香花火イラスト" width="600" height="600"/>
     </resources>
 </document>
