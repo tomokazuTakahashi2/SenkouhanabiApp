@@ -69,7 +69,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         chirachira.zPosition = 1
         opening.zPosition = 1
         
-        
     }
     
 //音
