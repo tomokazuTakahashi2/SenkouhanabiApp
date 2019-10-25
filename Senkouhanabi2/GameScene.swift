@@ -78,11 +78,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let s2 = SKAction.playSoundFileNamed("線香花火.mp3", waitForCompletion: true)
         //s2をループ
         let actionLoop = SKAction.repeatForever(s2)
-        //待ち39秒
-        let wait = SKAction.wait(forDuration: 39.0)
+        //待ち41秒
+        let wait = SKAction.wait(forDuration: 41.0)
         // サウンドを削除
         let deleteSound = SKAction.removeFromParent()
-        //s1再生→39秒間待機→サウンド削除
+        //s1再生→41秒間待機→サウンド削除
         let setSound = SKAction.sequence([s1,actionLoop])
         sound.run(setSound)
         let cancelSound = SKAction.sequence([wait,deleteSound])
@@ -191,53 +191,53 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     func setupOpening() {
         // OPの画像を読み込む
         let OP1 = SKTexture(imageNamed: "OP1")
-        OP1.filteringMode = .nearest
+        OP1.filteringMode = .linear
         let OP2 = SKTexture(imageNamed: "OP2")
-        OP2.filteringMode = .nearest
+        OP2.filteringMode = .linear
         let OP3 = SKTexture(imageNamed: "OP3")
-        OP3.filteringMode = .nearest
+        OP3.filteringMode = .linear
         let OP4 = SKTexture(imageNamed: "OP4")
-        OP4.filteringMode = .nearest
+        OP4.filteringMode = .linear
         let OP5 = SKTexture(imageNamed: "OP5")
-        OP5.filteringMode = .nearest
+        OP5.filteringMode = .linear
         let OP6 = SKTexture(imageNamed: "OP6")
-        OP6.filteringMode = .nearest
+        OP6.filteringMode = .linear
         let OP7 = SKTexture(imageNamed: "OP7")
-        OP7.filteringMode = .nearest
+        OP7.filteringMode = .linear
         let OP8 = SKTexture(imageNamed: "OP8")
-        OP8.filteringMode = .nearest
+        OP8.filteringMode = .linear
         let OP9 = SKTexture(imageNamed: "OP9")
-        OP9.filteringMode = .nearest
+        OP9.filteringMode = .linear
         let OP10 = SKTexture(imageNamed: "OP10")
-        OP10.filteringMode = .nearest
+        OP10.filteringMode = .linear
         let OP11 = SKTexture(imageNamed: "OP11")
-        OP11.filteringMode = .nearest
+        OP11.filteringMode = .linear
         let OP12 = SKTexture(imageNamed: "OP12")
-        OP12.filteringMode = .nearest
+        OP12.filteringMode = .linear
         let OP13 = SKTexture(imageNamed: "OP13")
-        OP13.filteringMode = .nearest
+        OP13.filteringMode = .linear
         let OP14 = SKTexture(imageNamed: "OP14")
-        OP14.filteringMode = .nearest
+        OP14.filteringMode = .linear
         let OP15 = SKTexture(imageNamed: "OP15")
-        OP15.filteringMode = .nearest
+        OP15.filteringMode = .linear
         let OP16 = SKTexture(imageNamed: "OP16")
-        OP16.filteringMode = .nearest
+        OP16.filteringMode = .linear
         let OP17 = SKTexture(imageNamed: "OP17")
-        OP17.filteringMode = .nearest
+        OP17.filteringMode = .linear
         let OP18 = SKTexture(imageNamed: "OP18")
-        OP18.filteringMode = .nearest
+        OP18.filteringMode = .linear
         let OP19 = SKTexture(imageNamed: "OP19")
-        OP19.filteringMode = .nearest
+        OP19.filteringMode = .linear
         let OP20 = SKTexture(imageNamed: "OP20")
-        OP20.filteringMode = .nearest
+        OP20.filteringMode = .linear
         let OP21 = SKTexture(imageNamed: "OP21")
-        OP21.filteringMode = .nearest
+        OP21.filteringMode = .linear
         let OP22 = SKTexture(imageNamed: "OP22")
-        OP22.filteringMode = .nearest
+        OP22.filteringMode = .linear
         let OP23 = SKTexture(imageNamed: "OP23")
-        OP23.filteringMode = .nearest
+        OP23.filteringMode = .linear
         let OP24 = SKTexture(imageNamed: "OP24")
-        OP24.filteringMode = .nearest
+        OP24.filteringMode = .linear
         
         //画像を表示
         let op1 = SKAction.animate(with: [OP1], timePerFrame: 0.5) //OP1（0.5秒）
@@ -306,9 +306,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
    func setupFireBall() {
         // 火玉の画像を2種類読み込む
         let fireTextureA = SKTexture(imageNamed: "fireBall")
-        fireTextureA.filteringMode = .nearest
+        fireTextureA.filteringMode = .linear
         let fireTextureB = SKTexture(imageNamed: "fireBall2")
-        fireTextureB.filteringMode = .nearest
+        fireTextureB.filteringMode = .linear
         let Texture = SKTexture(imageNamed: "m")
         Texture.filteringMode = .nearest
     
