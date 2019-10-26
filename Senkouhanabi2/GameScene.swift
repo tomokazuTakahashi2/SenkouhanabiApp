@@ -76,8 +76,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         //soundデータを読み込む
         let s1 = SKAction.playSoundFileNamed("fuse1.mp3", waitForCompletion: false)
         let s2 = SKAction.playSoundFileNamed("線香花火.mp3", waitForCompletion: true)
+        let s3 = SKAction.playSoundFileNamed("線香花火2.mp3", waitForCompletion: true)
+        let s4 = SKAction.playSoundFileNamed("線香花火3.mp3", waitForCompletion: true)
+        
+        let setSound1 = SKAction.sequence([s2,s3,s4])
         //s2をループ
-        let actionLoop = SKAction.repeatForever(s2)
+        let actionLoop = SKAction.repeatForever(setSound1)
         //待ち41秒
         let wait = SKAction.wait(forDuration: 41.0)
         // サウンドを削除
@@ -96,8 +100,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     func setupSound2(){
         //soundデータを読み込む
         let s1 = SKAction.playSoundFileNamed("線香花火_3.mp3", waitForCompletion: false)
-        let s2 = SKAction.playSoundFileNamed("線香花火_2.mp3", waitForCompletion: true)
-        
+        let S1 = SKAction.playSoundFileNamed("線香花火4.mp3", waitForCompletion: true)
+        let S2 = SKAction.playSoundFileNamed("線香花火5.mp3", waitForCompletion: true)
+        let S3 = SKAction.playSoundFileNamed("線香花火6.mp3", waitForCompletion: true)
+        let S4 = SKAction.playSoundFileNamed("線香花火7.mp3", waitForCompletion: true)
+        let S5 = SKAction.playSoundFileNamed("線香花火8.mp3", waitForCompletion: true)
+        let S6 = SKAction.playSoundFileNamed("線香花火9.mp3", waitForCompletion: true)
+        let S7 = SKAction.playSoundFileNamed("線香花火10.mp3", waitForCompletion: true)
+        let S8 = SKAction.playSoundFileNamed("線香花火11.mp3", waitForCompletion: true)
+        let S9 = SKAction.playSoundFileNamed("線香花火12.mp3", waitForCompletion: true)
+   
+        let s2 = SKAction.sequence([S1,S2,S3,S4,S5,S6,S7,S8,S9])
         // 待ち時間3.5秒
         let wait = SKAction.wait(forDuration: 3.5)
         // 待ち時間3秒

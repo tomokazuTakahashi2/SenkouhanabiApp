@@ -9,6 +9,17 @@
 /* Begin PBXBuildFile section */
 		64253529235B51BF005571F7 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64253528235B51BF005571F7 /* NextViewController.swift */; };
 		64489052235EDD06006D0C8C /* fuse1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 64489051235EDD06006D0C8C /* fuse1.mp3 */; };
+		6450FDF723647D7800AECEFD /* 線香花火2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6450FDF523647D7800AECEFD /* 線香花火2.mp3 */; };
+		6450FDF823647D7800AECEFD /* 線香花火3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6450FDF623647D7800AECEFD /* 線香花火3.mp3 */; };
+		6450FE02236480AD00AECEFD /* 線香花火9.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6450FDF9236480AD00AECEFD /* 線香花火9.mp3 */; };
+		6450FE03236480AD00AECEFD /* 線香花火11.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6450FDFA236480AD00AECEFD /* 線香花火11.mp3 */; };
+		6450FE04236480AD00AECEFD /* 線香花火6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6450FDFB236480AD00AECEFD /* 線香花火6.mp3 */; };
+		6450FE05236480AD00AECEFD /* 線香花火12.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6450FDFC236480AD00AECEFD /* 線香花火12.mp3 */; };
+		6450FE06236480AD00AECEFD /* 線香花火10.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6450FDFD236480AD00AECEFD /* 線香花火10.mp3 */; };
+		6450FE07236480AD00AECEFD /* 線香花火5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6450FDFE236480AD00AECEFD /* 線香花火5.mp3 */; };
+		6450FE08236480AD00AECEFD /* 線香花火8.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6450FDFF236480AD00AECEFD /* 線香花火8.mp3 */; };
+		6450FE09236480AD00AECEFD /* 線香花火4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6450FE00236480AD00AECEFD /* 線香花火4.mp3 */; };
+		6450FE0A236480AD00AECEFD /* 線香花火7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6450FE01236480AD00AECEFD /* 線香花火7.mp3 */; };
 		646EE7DD23404FBE0063612A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646EE7DC23404FBE0063612A /* AppDelegate.swift */; };
 		646EE7DF23404FBE0063612A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646EE7DE23404FBE0063612A /* ViewController.swift */; };
 		646EE7E223404FBE0063612A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 646EE7E023404FBE0063612A /* Main.storyboard */; };
@@ -23,6 +34,17 @@
 /* Begin PBXFileReference section */
 		64253528235B51BF005571F7 /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
 		64489051235EDD06006D0C8C /* fuse1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fuse1.mp3; sourceTree = "<group>"; };
+		6450FDF523647D7800AECEFD /* 線香花火2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "線香花火2.mp3"; sourceTree = "<group>"; };
+		6450FDF623647D7800AECEFD /* 線香花火3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "線香花火3.mp3"; sourceTree = "<group>"; };
+		6450FDF9236480AD00AECEFD /* 線香花火9.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "線香花火9.mp3"; sourceTree = "<group>"; };
+		6450FDFA236480AD00AECEFD /* 線香花火11.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "線香花火11.mp3"; sourceTree = "<group>"; };
+		6450FDFB236480AD00AECEFD /* 線香花火6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "線香花火6.mp3"; sourceTree = "<group>"; };
+		6450FDFC236480AD00AECEFD /* 線香花火12.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "線香花火12.mp3"; sourceTree = "<group>"; };
+		6450FDFD236480AD00AECEFD /* 線香花火10.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "線香花火10.mp3"; sourceTree = "<group>"; };
+		6450FDFE236480AD00AECEFD /* 線香花火5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "線香花火5.mp3"; sourceTree = "<group>"; };
+		6450FDFF236480AD00AECEFD /* 線香花火8.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "線香花火8.mp3"; sourceTree = "<group>"; };
+		6450FE00236480AD00AECEFD /* 線香花火4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "線香花火4.mp3"; sourceTree = "<group>"; };
+		6450FE01236480AD00AECEFD /* 線香花火7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "線香花火7.mp3"; sourceTree = "<group>"; };
 		646EE7D923404FBE0063612A /* Senkouhanabi2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Senkouhanabi2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		646EE7DC23404FBE0063612A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		646EE7DE23404FBE0063612A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +100,17 @@
 				646EE7F223424C960063612A /* 線香花火_3.mp3 */,
 				646EE7F423424C9F0063612A /* 線香花火_2.mp3 */,
 				64489051235EDD06006D0C8C /* fuse1.mp3 */,
+				6450FDF523647D7800AECEFD /* 線香花火2.mp3 */,
+				6450FDF623647D7800AECEFD /* 線香花火3.mp3 */,
+				6450FE00236480AD00AECEFD /* 線香花火4.mp3 */,
+				6450FDFE236480AD00AECEFD /* 線香花火5.mp3 */,
+				6450FDFB236480AD00AECEFD /* 線香花火6.mp3 */,
+				6450FE01236480AD00AECEFD /* 線香花火7.mp3 */,
+				6450FDFF236480AD00AECEFD /* 線香花火8.mp3 */,
+				6450FDF9236480AD00AECEFD /* 線香花火9.mp3 */,
+				6450FDFD236480AD00AECEFD /* 線香花火10.mp3 */,
+				6450FDFA236480AD00AECEFD /* 線香花火11.mp3 */,
+				6450FDFC236480AD00AECEFD /* 線香花火12.mp3 */,
 			);
 			path = Senkouhanabi2;
 			sourceTree = "<group>";
@@ -140,12 +173,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6450FE09236480AD00AECEFD /* 線香花火4.mp3 in Resources */,
+				6450FE04236480AD00AECEFD /* 線香花火6.mp3 in Resources */,
+				6450FDF723647D7800AECEFD /* 線香花火2.mp3 in Resources */,
+				6450FE0A236480AD00AECEFD /* 線香花火7.mp3 in Resources */,
 				646EE7E723404FC00063612A /* LaunchScreen.storyboard in Resources */,
+				6450FE07236480AD00AECEFD /* 線香花火5.mp3 in Resources */,
 				646EE7F323424C960063612A /* 線香花火_3.mp3 in Resources */,
+				6450FDF823647D7800AECEFD /* 線香花火3.mp3 in Resources */,
+				6450FE03236480AD00AECEFD /* 線香花火11.mp3 in Resources */,
 				646EE7E423404FC00063612A /* Assets.xcassets in Resources */,
+				6450FE02236480AD00AECEFD /* 線香花火9.mp3 in Resources */,
 				646EE7F723424CA90063612A /* 線香花火.mp3 in Resources */,
 				646EE7E223404FBE0063612A /* Main.storyboard in Resources */,
+				6450FE06236480AD00AECEFD /* 線香花火10.mp3 in Resources */,
 				646EE7F523424C9F0063612A /* 線香花火_2.mp3 in Resources */,
+				6450FE05236480AD00AECEFD /* 線香花火12.mp3 in Resources */,
+				6450FE08236480AD00AECEFD /* 線香花火8.mp3 in Resources */,
 				64489052235EDD06006D0C8C /* fuse1.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
