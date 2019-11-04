@@ -1,17 +1,17 @@
 //
-//  GameScene.swift
+//  GameScene3.swift
 //  Senkouhanabi2
 //
-//  Created by Raphael on 2019/09/29.
+//  Created by Raphael on 2019/11/04.
 //  Copyright © 2019 takahashi. All rights reserved.
 //
 
 import UIKit
 import SpriteKit
-import CoreMotion
 
-class GameScene: SKScene, SKPhysicsContactDelegate{
 
+class GameScene3: SKScene, SKPhysicsContactDelegate{
+    
     var fireBall:SKSpriteNode!
     var pati:SKNode!
     var pati2:SKNode!
@@ -27,18 +27,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     // 衝突判定カテゴリー
     let FireBallCategory: UInt32 = 1 << 0       // 0...00001
     let groundCategory: UInt32 = 1 << 1     // 0...00010
-
-    // MotionManagerのインスタンス
-    let motionManager = CMMotionManager()
     
-    //加速度センサーのX,Y,Z
-    var acceleX: Double = 0
-    var acceleY: Double = 0
-    var acceleZ: Double = 0
-    let Alpha = 0.4
-    var flg: Bool = false
+//    // MotionManagerのインスタンス
+//    let motionManager = CMMotionManager()
     
-// SKView上にシーンが表示されたときに呼ばれるメソッド
+//    //加速度センサーのX,Y,Z
+//    var acceleX: Double = 0
+//    var acceleY: Double = 0
+//    var acceleZ: Double = 0
+//    let Alpha = 0.4
+//    var flg: Bool = false
+    
+    // SKView上にシーンが表示されたときに呼ばれるメソッド
     override func didMove(to view: SKView) {
         // 重力を設定
         physicsWorld.gravity = CGVector(dx: 0, dy: -4)
@@ -49,7 +49,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         // 棒のノード
         stickNode = SKNode()
-
+        
         // 各種スプライトを生成する処理をメソッドに分割
         setupOpening()
         setupSound()
@@ -71,7 +71,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
     }
     
-//音
+    //音
     func setupSound(){
         //soundデータを読み込む
         let s1 = SKAction.playSoundFileNamed("fuse1.mp3", waitForCompletion: false)
@@ -82,21 +82,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let setSound1 = SKAction.sequence([s2,s3,s4])
         //s2をループ
         let actionLoop = SKAction.repeatForever(setSound1)
-        //待ち51.5秒
-        let wait = SKAction.wait(forDuration: 51.5)
+        //待ち31.5秒
+        let wait = SKAction.wait(forDuration: 31.5)
         // サウンドを削除
         let deleteSound = SKAction.removeFromParent()
-        //s1再生→51.5秒間待機→サウンド削除
+        //s1再生→31秒間待機→サウンド削除
         let setSound = SKAction.sequence([s1,actionLoop])
         sound.run(setSound)
         let cancelSound = SKAction.sequence([wait,deleteSound])
         sound.run(cancelSound)
         //サウンドを追加する
         addChild(sound)
-      
+        
     }
     
-//音2
+    //音2
     func setupSound2(){
         //soundデータを読み込む
         let s1 = SKAction.playSoundFileNamed("線香花火_3.mp3", waitForCompletion: false)
@@ -109,7 +109,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let S7 = SKAction.playSoundFileNamed("線香花火10.mp3", waitForCompletion: true)
         let S8 = SKAction.playSoundFileNamed("線香花火11.mp3", waitForCompletion: true)
         let S9 = SKAction.playSoundFileNamed("線香花火12.mp3", waitForCompletion: true)
-   
+        
         let s2 = SKAction.sequence([S1,S2,S3,S4,S5,S6,S7,S8,S9])
         // 待ち時間3.5秒
         let wait = SKAction.wait(forDuration: 3.5)
@@ -122,67 +122,67 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let deleteSound = SKAction.removeFromParent()
         
         // 待ち→パチパチ→待ち→パチパチ→待ち...
-        let PPSound = SKAction.repeatForever(SKAction.sequence([wait,wait1,s1,wait1,s1,wait2,s1,s1,wait2,s1,s1,wait2,s1,s2,s2,s2,s2,deleteSound]))
+        let PPSound = SKAction.repeatForever(SKAction.sequence([wait,wait1,s1,wait1,s1,wait2,s1,s1,wait2,s1,s1,wait2,s1,s2,s2,s2,deleteSound]))
         
         sound2.run(PPSound)
-
+        
         //サウンドを追加する
         addChild(sound2)
-
-    }
-    
-//加速度センサーのローパスフィルター
-    func lowpassFilter(acceleration: CMAcceleration){
-        //EMA(指数移動平均）フィルター　　St = α * Yt-1 + (1 -α) * St-1
-        //St：t時点でのEMA,α：平滑化係数,Yt-1：１つ前のデータ,St-1：１つ前のEMA
-        acceleX = Alpha * acceleration.x + acceleX * (1.0 - Alpha);
-        acceleY = Alpha * acceleration.y + acceleY * (1.0 - Alpha);
-        acceleZ = Alpha * acceleration.z + acceleZ * (1.0 - Alpha);
         
-    //加速度センサーの判定
-        //acceleXが0.01より大きかったら、加速度センサーを止め、重力を発生させる
-        if acceleX > 0.01 {
-            motionManager.stopAccelerometerUpdates()    //加速度センサーをストップ
-            fireBall.physicsBody = SKPhysicsBody(circleOfRadius: fireBall.size.height / 2)  //重力を発生
-            print("右に傾きました")
-        //でなければ何もしない
-        }else{
-            print("正常です")
-        }
-        //acceleXが-0.1より小さかったら、加速度センサーを止め、重力を発生させる
-        if acceleX < -0.1 {
-            motionManager.stopAccelerometerUpdates()    //加速度センサーをストップ
-            fireBall.physicsBody = SKPhysicsBody(circleOfRadius: fireBall.size.height / 2) //重力を発生
-            print("左に傾きました")
-        //でなければ何もしない
-        }else{
-            print("正常です")
-        }
-        //acceleZが0.01より大きかったら、加速度センサーを止め、重力を発生させる
-        if acceleZ > 0.01{
-            motionManager.stopAccelerometerUpdates()    //加速度センサーをストップ
-            fireBall.physicsBody = SKPhysicsBody(circleOfRadius: fireBall.size.height / 2) //重力を発生
-            print("前に傾きました")
-        //でなければ何もしない
-        }else{
-            print("正常です")
-        }
-        //acceleZが-0.1よりZ小さかったら、加速度センサーを止め、重力を発生させる
-        if acceleZ < -0.1{
-            motionManager.stopAccelerometerUpdates()    //加速度センサーをストップ
-            fireBall.physicsBody = SKPhysicsBody(circleOfRadius: fireBall.size.height / 2) //重力を発生
-            print("後ろに傾きました")
-        //でなければ何もしない
-        }else{
-            print("正常です")
-        }
-        // 衝突のカテゴリー設定
-        fireBall.physicsBody?.categoryBitMask = FireBallCategory        //自分が属するカテゴリ値
-        fireBall.physicsBody?.collisionBitMask = 0          //跳ね返りを防止(この値とぶつかってくる相手のcategoryBitMaskの値とをAND算出結果が1で衝突する)
-        fireBall.physicsBody?.contactTestBitMask = groundCategory         //物体と衝突した時に、通知として送る値
     }
     
-//棒の部分
+//    //加速度センサーのローパスフィルター
+//    func lowpassFilter(acceleration: CMAcceleration){
+//        //EMA(指数移動平均）フィルター　　St = α * Yt-1 + (1 -α) * St-1
+//        //St：t時点でのEMA,α：平滑化係数,Yt-1：１つ前のデータ,St-1：１つ前のEMA
+//        acceleX = Alpha * acceleration.x + acceleX * (1.0 - Alpha);
+//        acceleY = Alpha * acceleration.y + acceleY * (1.0 - Alpha);
+//        acceleZ = Alpha * acceleration.z + acceleZ * (1.0 - Alpha);
+//
+//        //加速度センサーの判定
+//        //acceleXが0.01より大きかったら、加速度センサーを止め、重力を発生させる
+//        if acceleX > 0.01 {
+//            motionManager.stopAccelerometerUpdates()    //加速度センサーをストップ
+//            fireBall.physicsBody = SKPhysicsBody(circleOfRadius: fireBall.size.height / 2)  //重力を発生
+//            print("右に傾きました")
+//            //でなければ何もしない
+//        }else{
+//            print("正常です")
+//        }
+//        //acceleXが-0.1より小さかったら、加速度センサーを止め、重力を発生させる
+//        if acceleX < -0.1 {
+//            motionManager.stopAccelerometerUpdates()    //加速度センサーをストップ
+//            fireBall.physicsBody = SKPhysicsBody(circleOfRadius: fireBall.size.height / 2) //重力を発生
+//            print("左に傾きました")
+//            //でなければ何もしない
+//        }else{
+//            print("正常です")
+//        }
+//        //acceleZが0.01より大きかったら、加速度センサーを止め、重力を発生させる
+//        if acceleZ > 0.01{
+//            motionManager.stopAccelerometerUpdates()    //加速度センサーをストップ
+//            fireBall.physicsBody = SKPhysicsBody(circleOfRadius: fireBall.size.height / 2) //重力を発生
+//            print("前に傾きました")
+//            //でなければ何もしない
+//        }else{
+//            print("正常です")
+//        }
+//        //acceleZが-0.1よりZ小さかったら、加速度センサーを止め、重力を発生させる
+//        if acceleZ < -0.1{
+//            motionManager.stopAccelerometerUpdates()    //加速度センサーをストップ
+//            fireBall.physicsBody = SKPhysicsBody(circleOfRadius: fireBall.size.height / 2) //重力を発生
+//            print("後ろに傾きました")
+//            //でなければ何もしない
+//        }else{
+//            print("正常です")
+//        }
+//        // 衝突のカテゴリー設定
+//        fireBall.physicsBody?.categoryBitMask = FireBallCategory        //自分が属するカテゴリ値
+//        fireBall.physicsBody?.collisionBitMask = 0          //跳ね返りを防止(この値とぶつかってくる相手のcategoryBitMaskの値とをAND算出結果が1で衝突する)
+//        fireBall.physicsBody?.contactTestBitMask = groundCategory         //物体と衝突した時に、通知として送る値
+//    }
+    
+    //棒の部分
     func setupStick() {
         // 棒の画像を読み込む
         let stickTexture = SKTexture(imageNamed: "stick")
@@ -200,7 +200,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         // シーンにスプライトを追加する
         addChild(stickSprite)
     }
-//OPアニメ
+    //OPアニメ
     func setupOpening() {
         // OPの画像を読み込む
         let OP1 = SKTexture(imageNamed: "OP1")
@@ -277,30 +277,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let op22 = SKAction.animate(with: [OP22], timePerFrame: 0.3) //OP22（0.3秒）
         let op23 = SKAction.animate(with: [OP23], timePerFrame: 0.1) //OP23（0.1秒）
         let op24 = SKAction.animate(with: [OP24], timePerFrame: 0.1) //OP24（0.1秒）
-
+        
         // OPを削除
         let delete = SKAction.removeFromParent()
         
-        let startMotionSensor = SKAction.run {
-            //加速度センサー
-            if self.motionManager.isAccelerometerAvailable {
-                // センサーの更新間隔（interval）の設定 [sec]
-                self.motionManager.accelerometerUpdateInterval = 0.2
-                
-                // センサー値の取得開始
-                self.motionManager.startAccelerometerUpdates(
-                    to: OperationQueue.current!,
-                    withHandler: {(accelData: CMAccelerometerData?, errorOC: Error?) in
-                        self.lowpassFilter(acceleration: accelData!.acceleration)
-                })
-                print("センサーが作動しました")
-            }
-        }
+//        let startMotionSensor = SKAction.run {
+//            //加速度センサー
+//            if self.motionManager.isAccelerometerAvailable {
+//                // センサーの更新間隔（interval）の設定 [sec]
+//                self.motionManager.accelerometerUpdateInterval = 0.2
+//
+//                // センサー値の取得開始
+//                self.motionManager.startAccelerometerUpdates(
+//                    to: OperationQueue.current!,
+//                    withHandler: {(accelData: CMAccelerometerData?, errorOC: Error?) in
+//                        self.lowpassFilter(acceleration: accelData!.acceleration)
+//                })
+//                print("センサーが作動しました")
+//            }
+//        }
         
         //アニメーション
         let OPAnimation = SKAction.repeatForever(SKAction.sequence([
             op1,op2,op3,op4,op5,op6,op7,op8,op9,op10,op11,op12,op13,op14,op15,op16,op17,
-            op18,op19,op20,op21,op22,op23,op22,op24,op22,op23,op22,op24,delete,startMotionSensor
+            op18,op19,op20,op21,op22,op23,op22,op24,op22,op23,op22,op24,delete
             ]))
         
         // スプライトを作成(配置)
@@ -312,11 +312,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         // スプライトを追加する
         addChild(opening)
- 
+        
     }
     
-//火玉
-   func setupFireBall() {
+    //火玉
+    func setupFireBall() {
         // 火玉の画像を2種類読み込む
         let fireTextureA = SKTexture(imageNamed: "fireBall")
         fireTextureA.filteringMode = .linear
@@ -324,51 +324,51 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         fireTextureB.filteringMode = .linear
         let Texture = SKTexture(imageNamed: "m")
         Texture.filteringMode = .nearest
-    
+        
         // 2種類のテクスチャを交互に変更するアニメーションを作成
         let texuresAnimation = SKAction.animate(with: [fireTextureA, fireTextureB], timePerFrame: 0.2, resize: true, restore: false)
         let flap = SKAction.repeatForever(texuresAnimation)
-
+        
         // 待ち時間3.5秒
         let waitAnimation1 = SKAction.animate(with: [Texture], timePerFrame: 3.5)
-    
-        // 縮小までの待ち時間50秒
-        let waitAnimation2 = SKAction.wait(forDuration: 50.0)
-    
+        
+        // 縮小までの待ち時間30秒
+        let waitAnimation2 = SKAction.wait(forDuration: 30.0)
+        
         //2秒かけて1/2に縮小する
         let action = SKAction.scale(to: 1/2,duration: 2.0)
         //3秒かけてフェードアウトする
         let action2 = SKAction.fadeOut(withDuration: 3.0)
         // 火玉を削除
         let delete = SKAction.removeFromParent()
-    
-    let Animation = SKAction.sequence([
-        waitAnimation1,flap
-        ])
-    let Animation2 = SKAction.sequence([
-        waitAnimation2,action,action2,delete
-        ])
-    let groupAction = SKAction.group([
-        Animation,Animation2
-        ])
+        
+        let Animation = SKAction.sequence([
+            waitAnimation1,flap
+            ])
+        let Animation2 = SKAction.sequence([
+            waitAnimation2,action,action2,delete
+            ])
+        let groupAction = SKAction.group([
+            Animation,Animation2
+            ])
         // スプライトを作成(配置)
         fireBall = SKSpriteNode(texture: fireTextureA)
         fireBall.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.45)
-    
+        
         // 衝突のカテゴリー設定
         fireBall.physicsBody?.categoryBitMask = FireBallCategory        //自分が属するカテゴリ値
         fireBall.physicsBody?.contactTestBitMask = groundCategory       //物体と衝突した時に、通知として送る値
-
+        
         // アニメーションを設定
         fireBall.run(groupAction)
         // スプライトを追加する
         addChild(fireBall)
     }
-
-
-//パチパチ
-    func setupPatipati() {
     
+    
+    //パチパチ
+    func setupPatipati() {
+        
         //パチパチの画像を取り込む
         let PatiPatiTexture1 = SKTexture(imageNamed: "PatiPati-1")
         PatiPatiTexture1.filteringMode = .nearest
@@ -436,24 +436,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let delete = SKAction.removeFromParent()
         
         // 待ち→パチパチ→待ち→パチパチ→待ち...
-        let PPAnimation = SKAction.repeatForever(SKAction.sequence([wait,m,pp1,m,pp4,m2,pp3,pp4,m2,pp5,pp6,m2,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp1,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp3,pp5,pp10,pp4,pp11,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp12,pp3,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp12,pp3,pp1,pp7,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp5,pp10,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp4,pp12,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp4,pp11,pp3,pp1,pp7,pp8,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,m3,pp13,pp15,pp16,m3,pp14,pp16,m3,pp13,pp14,m3,pp13,pp13,pp15,pp16,m3,pp14,pp16,m3,pp13,pp14,m3,pp13,pp13,pp15,pp16,m3,pp14,pp16,m3,pp13,pp14,m3,pp13,pp13,pp15,pp16,m3,pp14,pp16,m3,pp13,pp14,m3,pp13,pp13,delete
+        let PPAnimation = SKAction.repeatForever(SKAction.sequence([wait,m,pp1,m,pp4,m2,pp3,pp4,m2,pp5,pp6,m2,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp1,pp3,pp5,pp4,pp11,pp3,pp1,pp7,pp8,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,pp2,pp9,pp1,pp3,pp5,pp10,pp4,pp11,pp12,pp3,pp5,pp6,pp1,pp7,pp8,pp2,pp9,m3,pp13,pp15,pp16,m3,pp14,pp16,m3,pp13,pp14,m3,pp13,pp13,pp15,pp16,m3,pp14,pp16,m3,pp13,pp14,m3,pp13,pp13,pp15,pp16,m3,pp14,pp16,m3,pp13,pp14,m3,pp13,pp13,pp15,pp16,m3,pp14,pp16,m3,pp13,pp14,m3,pp13,pp13,delete
             ]))
-
+        
         // スプライトを作成(配置)
         pati = SKSpriteNode(texture: PatiPatiTexture1)
         pati.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.4)
-    
+        
         // アニメーションを設定
         pati.run(PPAnimation)
-
+        
         // スプライトを追加する
         addChild(pati)
-    
+        
     }
     
-//パチパチ2
+    //パチパチ2
     func setupPatipati2() {
-
+        
         //パチパチの画像を取り込む
         let PatiPatiTexture1 = SKTexture(imageNamed: "PatiPati-1")
         PatiPatiTexture1.filteringMode = .nearest
@@ -467,37 +467,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         PatiPatiTexture5.filteringMode = .nearest
         let Texture = SKTexture(imageNamed: "m")
         Texture.filteringMode = .nearest
-
+        
         // 待ち時間3.5秒
         let wait = SKAction.animate(with: [Texture], timePerFrame: 3.5)
         // 待ち時間3秒
         let m = SKAction.animate(with: [Texture], timePerFrame: 13.0)
-
+        
         //パチパチを表示
         let pp1 = SKAction.animate(with: [PatiPatiTexture1], timePerFrame: 0.1) //パチパチ1（0.1秒）
         let pp2 = SKAction.animate(with: [PatiPatiTexture2], timePerFrame: 0.1) //パチパチ2（0.1秒）
         let pp3 = SKAction.animate(with: [PatiPatiTexture3], timePerFrame: 0.1) //パチパチ3（0.1秒）
         let pp4 = SKAction.animate(with: [PatiPatiTexture4], timePerFrame: 0.1) //パチパチ4（0.1秒）
 
-        //2秒かけてフェードアウトする
-        let fadeOut = SKAction.fadeOut(withDuration: 1.0)
         // パチパチ２を削除
         let delete = SKAction.removeFromParent()
-
+        
         // 待ち→パチパチ→待ち→パチパチ→待ち...
-        let PPAnimation = SKAction.repeatForever(SKAction.sequence([wait,m,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp4,pp1,pp2,pp3,pp1,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp1,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp3,pp1,pp2,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,fadeOut,delete]))
-
+        let PPAnimation = SKAction.repeatForever(SKAction.sequence([wait,m,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp1,pp3,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,pp4,pp1,pp2,pp3,pp1,pp2,delete]))
+        
         pati2 = SKSpriteNode(texture: PatiPatiTexture1)
         pati2.position = CGPoint(x: self.frame.size.width * 0.5, y:self.frame.size.height * 0.4)
-
+        
         // アニメーションを設定
         pati2.run(PPAnimation)
-
+        
         // スプライトを追加する
         addChild(pati2)
     }
     
-//チラチラ
+    //チラチラ
     func setupChirachira() {
         
         //チラチラの画像を取り込む
@@ -522,8 +520,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         // 待ち時間3.5秒
         let wait = SKAction.animate(with: [Texture], timePerFrame: 3.5)
-        // 待ち時間44.5秒
-        let m = SKAction.animate(with: [Texture], timePerFrame: 44.5)
+        // 待ち時間24.5秒
+        let m = SKAction.animate(with: [Texture], timePerFrame: 24.5)
         // チラチラを削除
         let delete = SKAction.removeFromParent()
         
@@ -545,12 +543,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         
         // アニメーションを設定
         chirachira.run(PPAnimation)
-    
+        
         // スプライトを追加する
         addChild(chirachira)
     }
     
-//見えざる地面
+    //見えざる地面
     func setupGround() {
         
         // 見えざる地面のノード
@@ -571,7 +569,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         addChild(GroundNode)
     }
     
-// SKPhysicsContactDelegateのメソッド。衝突したときに呼ばれる
+    // SKPhysicsContactDelegateのメソッド。衝突したときに呼ばれる
     func didBegin(_ contact: SKPhysicsContact) {
         
         // もし見えざる地面と衝突したら、
@@ -581,7 +579,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             let deleteSound = SKAction.removeFromParent()
             sound.run(deleteSound)
             let deleteSound2 = SKAction.removeFromParent()
-            sound2.run(deleteSound2) 
+            sound2.run(deleteSound2)
             print("サウンド削除")
             
             // パチパチを削除する
@@ -593,8 +591,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             
             //チラチラを削除する
             chirachira.removeFromParent()
-          
+            
         }
     }
     
 }
+
